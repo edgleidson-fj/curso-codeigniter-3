@@ -18,7 +18,18 @@
         <link rel="stylesheet" href="<?php echo base_url('public/plugins/ionicons/dist/css/ionicons.min.css');?>">
         <link rel="stylesheet" href="<?php echo base_url('public/plugins/perfect-scrollbar/css/perfect-scrollbar.css');?>">         -->
         <link rel="stylesheet" href="<?php echo base_url('public/dist/css/theme.min.css');?>">
-    </head>
+		
+		<!-- Se $styles que vem do Controller estiver definido, faz um foreach percorrendo todas posições-->
+		<?php if(isset($styles)) : ?>
+			<?php foreach($styles as $s) : ?>
+				<link rel="stylesheet" href="<?php echo base_url('public/'. $s);?>">
+			<?php endforeach; ?>				
+		<?php endif; ?>	
+	</head>
 
     <body>        
         <div class="wrapper">
+
+
+
+		

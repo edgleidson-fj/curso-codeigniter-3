@@ -40,14 +40,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                             </div>
                         </div>
 
-
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header"><h3><?php echo $titulo_tabela; ?></h3></div>
+                                    <div class="card-header"><h3><a class="btn btn-success" href="">Novo</a></h3></div>
                                     <div class="card-body">
 										<!-- Tabela-->
-                                        <table id="data_table" class="table">
+                                        <table class="table data-table">
 											<!-- Título da tabela-->
                                             <thead>
                                                 <tr>
@@ -67,10 +66,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<td><?php echo $u->username ?></td>	
 														<td><?php echo $u->email ?></td>
 														<td><?php echo $u->first_name ?></td>
-														<td><?php echo $u->active ?></td>
+														<td><?php echo ($u->active == 1 ? '<span class="badge badge-pill badge-success mb-1">Sim</span>' : '<span class="badge badge-pill badge-warning mb-1">Não</span>'); ?></td>
 														<td>
-															<a class="btn btn-primary" href="">Editar</a>
-															<a class="btn btn-danger" href="">Excluir</a>
+															<a href="" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a> <!-- Botão Editar-->
+															<a href="" class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></a> <!-- Botão Excluir-->
 														</td>													
 													</tr>
 												<?php endforeach; ?>                                                                                               
@@ -92,7 +91,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     </div>
                 </footer>
                 
-            </div>
+            <!--</div>-->
         </div>
 
                 
