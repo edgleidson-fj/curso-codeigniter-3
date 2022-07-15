@@ -54,6 +54,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<th>Usuário</th>
 													<th>Email</th>
 													<th>Nome</th> 
+													<th>Perfil de acesso</th>
 													<th>Ativo</th>                                                   
                                                     <th class="nosort">Ações</th>
                                                 </tr>
@@ -66,10 +67,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 														<td><?php echo $u->username ?></td>	
 														<td><?php echo $u->email ?></td>
 														<td><?php echo $u->first_name ?></td>
+														<td><?php echo ($this->ion_auth->is_admin($u->id) ? 'Administrador' : 'Atendente'); ?></td> <!-- Verifica o perfil do usuário-->
 														<td><?php echo ($u->active == 1 ? '<span class="badge badge-pill badge-success mb-1">Sim</span>' : '<span class="badge badge-pill badge-warning mb-1">Não</span>'); ?></td>
 														<td>
-															<a href="" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a> <!-- Botão Editar-->
-															<a href="" class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></a> <!-- Botão Excluir-->
+															<a data-toggle="tooltip" data-placement="bottom" title="Editar <?php echo $this->router->fetch_class(); ?>" href="" class="btn btn-icon btn-primary"><i class="ik ik-edit-2"></i></a> <!-- Botão Editar-->
+															<a data-toggle="tooltip" data-placement="bottom" title="Excluir <?php echo $this->router->fetch_class(); ?>" href="" class="btn btn-icon btn-danger"><i class="ik ik-trash-2"></i></a> <!-- Botão Excluir-->
 														</td>													
 													</tr>
 												<?php endforeach; ?>                                                                                               
