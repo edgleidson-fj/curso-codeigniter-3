@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-        <title>Estacionamento &nbsp;|&nbsp;<?php echo (isset($titulo) ? $titulo : 'Padrão'); ?></title>
+        <title>Estacionamento&nbsp; | &nbsp;<?php echo (isset($titulo) ? $titulo : 'Padrão'); ?></title>
         <meta name="description" content="">
         <meta name="keywords" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
