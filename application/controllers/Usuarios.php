@@ -30,33 +30,30 @@ class Usuarios extends CI_controller{
 	}
 
 
-	public function core($usuario_id = NULL){
+	public function core($usuario_id = null){
 
+		//Se não não existir $usuario_id, cadastre um novo, caso exista, tente editar
 		if(!$usuario_id){
-			//Cadastra novo usuário
 			exit('Pode cadastrar novo usuário');
 		}
 		else{
-			//Edita o usuário
+			//Se $usuario_id não existir no BD, exiba uma mensagem de observação, caso exista edita o usuário
 			if(!$this->ion_auth->user($usuario_id)->row()){
 				exit('Usuário não existe');
 			}
 			else{
-				exit('Pronto para editar');
-			}
-
-			$data = array(
-				'titulo'=>'Usuários',
-				'sub_titulo'=>'Editar usuário cadastrado no banco de dados',
-				'usuario'=>$this->ion_auth->users()->result(),
-			);
-	
-			$this->load->view('layout/header', $data);
-			$this->load->view('usuarios/core');
-			$this->load->view('layout/footer');
+				$data = array(
+					'titulo'=>'Usuário',
+					'sub_titulo'=>'Listando todos usuários cadastrados no banco de dados',
+					'icone_view'=>'ik ik-user',
+					'usuario'=> $this->ion_auth->users($usuario_id)->result(), //Pegar o Usuário		
+				);	
+				$this->load->view('layout/header', $data);
+				$this->load->view('usuarios/core');
+				$this->load->view('layout/footer');			
+			};
 		}
 
-		
 		
 	}
 }
