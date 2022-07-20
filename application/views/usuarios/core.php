@@ -29,50 +29,83 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                 <div class="col-lg-4">
                                     <nav class="breadcrumb-container" aria-label="breadcrumb">
                                         <ol class="breadcrumb">
+											<!-- Icone Home-->
                                             <li class="breadcrumb-item">
                                                 <a title="Home" href="<?php echo (base_url('/')); ?>"><i class="ik ik-home"></i></a>
                                             </li>
 
-                                            <li class="breadcrumb-item">
-                                                <a title="Listar <?php echo $this->router->fetch_class(); ?>" href="<?php echo (base_url($this->router->fetch_class())); ?>"><i class="ik ik-users"></i></a>
+											<!-- Icone Usuários-->
+											<li class="breadcrumb-item">
+                                                <a title="Lista <?php echo $this->router->fetch_class(); ?>" href="<?php echo (base_url($this->router->fetch_class())); ?>"><i class="ik ik-users"></i></a>
                                             </li>
-
+                                            
+											<!-- Palavra Usuário-->
                                             <li class="breadcrumb-item active" aria-current="page"><?php echo $titulo; ?></li>
                                         </ol>
                                     </nav>
                                 </div>
                             </div>
                         </div>
+
                         <div class="row">
                             <div class="col-md-12">
                                 <div class="card">
-                                    <div class="card-header"><?php echo(isset($usuario) ? '00/00/00 00:00' : '') ?></div>
+                                    <div class="card-header"><?php echo (isset($usuario) ? '<i class="ik ik-calendar ik-2x"></i>&nbsp;Data da última alteração:&nbsp;'. formata_data_banco_com_hora($usuario[0]->data_ultima_alteracao) : '' ); ?></div>
                                     <div class="card-body">
-                                        <form class="forms-sample">
-                                            <div class="form-group">
-                                                <label for="exampleInputUsername1">Username</label>
-                                                <input type="text" class="form-control" id="exampleInputUsername1" placeholder="Username">
+										<form class="forms-sample" name="form_core" method="POST">
+                                            <div class="form-group row">
+                                                <div class="col-md-6 mb-20">
+													<label>Nome</label>
+													<input type="text" class="form-control" name="first_name" value="<?php echo(isset($usuario) ? $usuario[0]->first_name : set_value('first_name')); ?>">
+												</div>
+												<div class="col-md-6 mb-20">	
+													<label>Sobrenome</label>
+													<input type="text" class="form-control" name="last_name" value="<?php echo(isset($usuario) ? $usuario[0]->last_name : set_value('last_name')); ?>">
+												</div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputEmail1">Email address</label>
-                                                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Email">
+											<div class="form-group row">
+                                                <div class="col-md-6 mb-20">
+													<label>Usuário</label>
+													<input type="text" class="form-control" name="username" value="<?php echo(isset($usuario) ? $usuario[0]->username : set_value('username')); ?>">
+												</div>
+												<div class="col-md-6 mb-20">	
+													<label>Email (Login)</label>
+													<input type="text" class="form-control" name="email" value="<?php echo(isset($usuario) ? $usuario[0]->email : set_value('email')); ?>">
+												</div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputPassword1">Password</label>
-                                                <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+											<div class="form-group row">
+                                                <div class="col-md-6 mb-20">
+													<label>Senha</label>
+													<input type="password" class="form-control" name="password" value="">
+												</div>
+												<div class="col-md-6 mb-20">	
+													<label>Confirma senha</label>
+													<input type="password" class="form-control" name="confirmacao" value="">
+												</div>
                                             </div>
-                                            <div class="form-group">
-                                                <label for="exampleInputConfirmPassword1">Confirm Password</label>
-                                                <input type="password" class="form-control" id="exampleInputConfirmPassword1" placeholder="Password">
+											<div class="form-group row">
+                                                <div class="col-md-6 mb-20">
+													<label>Perfil de acesso</label>
+													<select class="form-control" name="perfil">
+														<option value="2">Atendente</option>
+														<option value="1">Administrador</option>
+													</select>
+												</div>
+												<div class="form-group row">
+                                                <div class="col-md-6 mb-20">
+													<label>Ativo</label>
+													<select class="form-control" name="active">
+														<?php if(isset($usuario)) : ?>
+															<option value="0" <?php echo ($usuario[0]->active == 0 ? 'selected' : '') ?>>Não</option>
+															<option value="1" <?php echo ($usuario[0]->active == 1 ? 'selected' : '') ?>>Sim</option>
+														<?php endif; ?>
+													</select>
+												</div>
                                             </div>
-                                            <div class="form-group">
-                                                <label class="custom-control custom-radio">
-                                                    <input type="radio" class="custom-control-input">
-                                                    <span class="custom-control-label">&nbsp;Remember me</span>
-                                                </label>
-                                            </div>
-                                            <button type="submit" class="btn btn-primary mr-2">Submit</button>
-                                            <button class="btn btn-light">Cancel</button>
+											<div class="col-md-6 mb-20">
+												<button type="submit" class="btn btn-primary mr-2">Submit</button>
+												<button class="btn btn-light">Cancel</button>
+											</div>
                                           </form>
                                     </div>
                                 </div>
