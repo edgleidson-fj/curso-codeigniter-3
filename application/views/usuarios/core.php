@@ -63,7 +63,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<input type="text" class="form-control" name="last_name" value="<?php echo(isset($usuario) ? $usuario[0]->last_name : set_value('last_name')); ?>">
 												</div>
                                             </div>
-											<div class="form-group row">
+											
+                                            <div class="form-group row">
                                                 <div class="col-md-6 mb-20">
 													<label>Usuário</label>
 													<input type="text" class="form-control" name="username" value="<?php echo(isset($usuario) ? $usuario[0]->username : set_value('username')); ?>">
@@ -73,7 +74,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<input type="text" class="form-control" name="email" value="<?php echo(isset($usuario) ? $usuario[0]->email : set_value('email')); ?>">
 												</div>
                                             </div>
-											<div class="form-group row">
+											
+                                            <div class="form-group row">
                                                 <div class="col-md-6 mb-20">
 													<label>Senha</label>
 													<input type="password" class="form-control" name="password" value="">
@@ -83,25 +85,45 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 													<input type="password" class="form-control" name="confirmacao" value="">
 												</div>
                                             </div>
-											<div class="form-group row">
+											
+                                            <div class="form-group row">
                                                 <div class="col-md-6 mb-20">
 													<label>Perfil de acesso</label>
 													<select class="form-control" name="perfil">
-														<option value="2">Atendente</option>
-														<option value="1">Administrador</option>
+                                                    <?php if(isset($usuario)) : ?>
+                                                            <option value="2" <?php echo ($perfil_usuario->id == 2 ? 'selected' : '') ?>>Atendente</option>
+                                                            <option value="1" <?php echo ($perfil_usuario->id == 1 ? 'selected' : '') ?>>Administrador</option>
+                                                        <?php else : ?>
+                                                            <option value="0">Não</option>
+															<option value="1">Sim</option>
+                                                        <?php endif; ?>    
 													</select>
 												</div>
+
 												<div class="form-group row">
-                                                <div class="col-md-6 mb-20">
-													<label>Ativo</label>
-													<select class="form-control" name="active">
-														<?php if(isset($usuario)) : ?>
-															<option value="0" <?php echo ($usuario[0]->active == 0 ? 'selected' : '') ?>>Não</option>
-															<option value="1" <?php echo ($usuario[0]->active == 1 ? 'selected' : '') ?>>Sim</option>
-														<?php endif; ?>
-													</select>
-												</div>
-                                            </div>
+                                                    <div class="col-md-6 mb-20">
+                                                        <label>Ativo</label>
+                                                        <select class="form-control" name="active">
+                                                            <?php if(isset($usuario)) : ?>
+                                                                <option value="0" <?php echo ($usuario[0]->active == 0 ? 'selected' : '') ?>>Não</option>
+                                                                <option value="1" <?php echo ($usuario[0]->active == 1 ? 'selected' : '') ?>>Sim</option>
+                                                            <?php else : ?>
+                                                                <option value="0">Não</option>
+                                                                <option value="1">Sim</option>
+                                                            <?php endif; ?>
+                                                        </select>
+												    </div>
+                                                </div>
+                                            </div>    
+
+                                            <?php if(isset($usuario)) : ?>
+                                                <div class="form-group row">
+                                                    <div class="col-md-12">
+                                                        <input type="hidden" class="form-control" name="usuario_id" value="<?php echo $usuario[0]->id; ?>">
+                                                    </div>
+                                                </div>
+                                            <?php endif; ?>
+
 											<div class="col-md-6 mb-20">
 												<button type="submit" class="btn btn-primary mr-2">Submit</button>
 												<button class="btn btn-light">Cancel</button>

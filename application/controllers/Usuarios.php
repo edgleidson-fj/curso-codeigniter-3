@@ -46,8 +46,14 @@ class Usuarios extends CI_controller{
 					'titulo'=>'Usuário',
 					'sub_titulo'=>'Listando todos usuários cadastrados no banco de dados',
 					'icone_view'=>'ik ik-user',
-					'usuario'=> $this->ion_auth->users($usuario_id)->result(), //Pegar o Usuário		
+					'usuario'=> $this->ion_auth->users($usuario_id)->result(), //Pegar o Usuário
+					'perfil_usuario'=>$this->ion_auth->get_users_groups($usuario_id)->row()	//Pegar o perfil/grupo	
 				);	
+
+				// echo'';
+				// var_dump($data['perfil_usuario']);
+				// exit;
+
 				$this->load->view('layout/header', $data);
 				$this->load->view('usuarios/core');
 				$this->load->view('layout/footer');			
