@@ -57,32 +57,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                                                 <div class="col-md-6 mb-20">
 													<label>Nome</label>
 													<input type="text" class="form-control" name="first_name" value="<?php echo(isset($usuario) ? $usuario[0]->first_name : set_value('first_name')); ?>">
-												</div>
+                                                    <?php echo form_error('first_name', '<div class="text-danger">', '</div>)'); ?>
+                                                </div>
 												<div class="col-md-6 mb-20">	
 													<label>Sobrenome</label>
 													<input type="text" class="form-control" name="last_name" value="<?php echo(isset($usuario) ? $usuario[0]->last_name : set_value('last_name')); ?>">
-												</div>
+                                                    <?php echo form_error('last_name', '<div class="text-danger">', '</div>)'); ?>
+                                                </div>
                                             </div>
 											
                                             <div class="form-group row">
                                                 <div class="col-md-6 mb-20">
 													<label>Usuário</label>
 													<input type="text" class="form-control" name="username" value="<?php echo(isset($usuario) ? $usuario[0]->username : set_value('username')); ?>">
-												</div>
+                                                    <?php echo form_error('username_name', '<div class="text-danger">', '</div>)'); ?>
+                                                </div>
 												<div class="col-md-6 mb-20">	
 													<label>Email (Login)</label>
 													<input type="text" class="form-control" name="email" value="<?php echo(isset($usuario) ? $usuario[0]->email : set_value('email')); ?>">
-												</div>
+                                                    <?php echo form_error('email', '<div class="text-danger">', '</div>)'); ?>
+                                                </div>
                                             </div>
 											
                                             <div class="form-group row">
                                                 <div class="col-md-6 mb-20">
 													<label>Senha</label>
 													<input type="password" class="form-control" name="password" value="">
+                                                    <?php echo form_error('password', '<div class="text-danger">', '</div>)'); ?>
 												</div>
 												<div class="col-md-6 mb-20">	
-													<label>Confirma senha</label>
+													<label>Confirmar senha</label>
 													<input type="password" class="form-control" name="confirmacao" value="">
+                                                    <?php echo form_error('confirmacao', '<div class="text-danger">', '</div>)'); ?>
 												</div>
                                             </div>
 											

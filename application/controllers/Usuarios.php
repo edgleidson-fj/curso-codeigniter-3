@@ -42,21 +42,35 @@ class Usuarios extends CI_controller{
 				exit('Usuário não existe');
 			}
 			else{
-				$data = array(
-					'titulo'=>'Usuário',
-					'sub_titulo'=>'Listando todos usuários cadastrados no banco de dados',
-					'icone_view'=>'ik ik-user',
-					'usuario'=> $this->ion_auth->users($usuario_id)->result(), //Pegar o Usuário
-					'perfil_usuario'=>$this->ion_auth->get_users_groups($usuario_id)->row()	//Pegar o perfil/grupo	
-				);	
+				//Regras de validação -> ('nome_do_campo', 'nome_desejado', 'regras') -> Obs: trim = remove espaços em branco
+				$this->form_validation->set_rules('first_name', 'Nome', 'trim|required|min_length[5]|max_length[20]');
+				$this->form_validation->set_rules('last_name', 'Sobrenome', 'trim|required|min_length[5]|max_length[20]');
+				$this->form_validation->set_rules('username-name', 'Usuário', 'trim|required|min_length[5]|max_length[30]');
+				$this->form_validation->set_rules('email', 'Email', 'trim|valid_email|required|min_length[5]|max_length[200]');
+				$this->form_validation->set_rules('password', 'Senha', 'trim|min_length[8]');
+				$this->form_validation->set_rules('confirmacao', 'Confirmar Senha', 'trim|matches[password]');
 
-				// echo'';
-				// var_dump($data['perfil_usuario']);
-				// exit;
+				//Verifica as regras foram validadas
+				if($this->form_validation->run()){
+					echo'<pre>';
+					print_r($this->input->post());
+					exit;
+				}
+				else{
+					//Erro de validação
 
-				$this->load->view('layout/header', $data);
-				$this->load->view('usuarios/core');
-				$this->load->view('layout/footer');			
+					$data = array(
+						'titulo'=>'Usuário',
+						'sub_titulo'=>'Listando todos usuários cadastrados no banco de dados',
+						'icone_view'=>'ik ik-user',
+						'usuario'=> $this->ion_auth->users($usuario_id)->result(), //Pegar o Usuário
+						'perfil_usuario'=>$this->ion_auth->get_users_groups($usuario_id)->row()	//Pegar o perfil/grupo	
+					);	
+						
+					$this->load->view('layout/header', $data);
+					$this->load->view('usuarios/core');
+					$this->load->view('layout/footer');
+				}							
 			};
 		}
 
